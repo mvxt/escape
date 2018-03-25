@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
+#include "Components/InputComponent.h"
 #include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GrabbingComponent.generated.h"
 
@@ -26,6 +27,19 @@ protected:
 private:
     // Player reach
     float Reach = 100.0f;
-
+    // Physics handle component
     UPhysicsHandleComponent* PhysicsHandle = nullptr;
+    // Input component
+    UInputComponent* InputComponent = nullptr;
+
+    // Find attached input component
+    void BindInputActions();
+    // Returns a hit for first physics body in reach
+    FHitResult GetFirstHitInReach() const;
+    // Find attached physics handle component
+    void GetPhysicsHandleComponent();
+    // Ray-cast and grab what's in reach
+    void Grab();
+    // Let go of object if something is grabbed
+    void Release();
 };
